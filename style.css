@@ -5,7 +5,8 @@
     grid-template-columns: repeat(3,1fr);
     height: 350px;
     width: 350px;
-    background-color: chocolate;
+    
+    /* background-color: chocolate; */
 }
 
 .box{
@@ -30,4 +31,8 @@ input{
     width: 350px;
     grid-template-columns: repeat(9,1fr);
     background-color: rgb(224, 35, 26);
+}
+
+.select{
+    background-color: chartreuse;
 }
