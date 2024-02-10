@@ -1,0 +1,33 @@
+
+
+#big-box{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    height: 350px;
+    width: 350px;
+    background-color: chocolate;
+}
+
+.box{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    border: 1px solid yellow;
+}
+
+input{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+}
+
+.cell{
+   border: 1px solid;  
+}
+
+#bottom-box{
+     display: grid;
+    width: 350px;
+    grid-template-columns: repeat(9,1fr);
+    background-color: rgb(224, 35, 26);
+}

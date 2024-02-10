@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./output.css">
-    <link rel="shortcut icon" href="./assest/favicon.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./output.css" />
+    <link rel="shortcut icon" href="./assest/favicon.png" type="image/x-icon" />
     <title>Sudoku</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="min-h-screen min-w-screen  ">
+      <div class="h-full pt-5 w-full  bg-gray-900 ">
+        <h1 class="text-center text-white text-4xl">Sudoku</h1>
+        <div
+          class="h-[90vh] w-full flex-col flex justify-center gap-6 items-center"
+        >
+           <button  id="sudokuGeneratorButton"  class="text-white bg-blue-600 rounded-lg  py-1 px-2">Generate New Sudoku</button>
+            <button  id="undoBtn" class="text-white bg-blue-600 rounded-lg  py-1 px-2"> Undo </button>         
+          <div id="big-box"></div>
+          <div id="bottom-box"></div> 
+        </div> 
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
 </html>
