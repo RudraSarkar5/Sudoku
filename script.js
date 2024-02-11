@@ -45,7 +45,7 @@ let numToRemove = 40;
       cell.classList.add("cell");
       const inputBox = document.createElement("input");
       inputBox.setAttribute("type", "number");
-      inputBox.setAttribute("inputmode", "none");
+      inputBox.setAttribute("readonly", "true");
       inputBox.setAttribute("id", id.toString());
       cell.appendChild(inputBox);
       box.appendChild(cell);
