@@ -30,9 +30,17 @@ input{
      display: grid;
     width: 350px;
     grid-template-columns: repeat(9,1fr);
-    background-color: rgb(224, 35, 26);
+    background-color: rgb(41, 218, 50);
 }
 
 .select{
     background-color: chartreuse;
+}
+
+.wrong{
+    background-color: rgb(170, 9, 9);
+}
+
+.congratulation{
+    display: none;
 }

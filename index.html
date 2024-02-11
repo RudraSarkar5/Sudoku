@@ -9,6 +9,9 @@
     <title>Sudoku</title>
   </head>
   <body>
+    <div id="congra" class=" congratulation absolute h-screen w-screen">
+        <img src="./assest/congratulation.png" alt="" srcset="" class="w-full h-full">
+    </div>
     <div class="min-h-screen min-w-screen  ">
       <div class="h-full pt-5 w-full  bg-gray-900 ">
         <h1 class="text-center text-white text-4xl">Sudoku</h1>
@@ -16,7 +19,7 @@
           class="h-[90vh] w-full flex-col flex justify-center gap-6 items-center"
         >
            <button  id="sudokuGeneratorButton" onclick="generateNewSudoku()"  class="text-white bg-blue-600 rounded-lg  py-1 px-2">Generate New Sudoku</button>
-            <button  id="undoBtn" class="text-white bg-blue-600 rounded-lg  py-1 px-2"> Undo </button>         
+            <button  onclick="undo()" id="undoBtn" class="text-white bg-blue-600 rounded-lg  py-1 px-2"> Undo </button>         
           <div id="big-box"></div>
           <div id="bottom-box"></div> 
         </div> 
