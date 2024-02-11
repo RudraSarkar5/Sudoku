@@ -34,12 +34,12 @@ let numToRemove = 40;
       if (fakeArray[j % 3] == null) {
         id = 3 * (i % 3) + j + 1 + bigGirdpasser * 27;
         fakeArray[j % 3] = id;
-        console.log(id);
+        
       } else {
         let v = fakeArray[j % 3] + 9;
         id = v;
         fakeArray[j % 3] = v;
-        console.log(id);
+        
       }
       const cell = document.createElement("div");
       cell.classList.add("cell");
@@ -139,11 +139,11 @@ function sudokuGridFilling() {
 function selectInput() {
   if (makeInput ||  (lastSelect && lastSelect.id == this.id)) {
     if (select_box == null) {
-      document.getElementById(this.id).classList.add("select");
+      this.classList.add("select");
       select_box = this;
     } else {
-      document.getElementById(select_box.id).classList.remove("select");
-      document.getElementById(this.id).classList.add("select");
+      select_box.classList.remove("select");
+      this.classList.add("select");
       select_box = this;
     }
   }
@@ -154,16 +154,15 @@ for (let i = 1; i < 10; i++) {
     .getElementById("btn" + i.toString())
     .addEventListener("click", () => {
       
-        if(lastSelect && lastSelect.id == select_box.id){
-          findExistedValue.classList.toggle("wrong");
-          lastSelect.classList.toggle("wrong");
-          lastSelect = null;
-          findExistedValue = null;
+        if( select_box){
+          
+          let x = document.getElementById("btn" + i.toString()).value;
+          select_box.value = parseInt(x);
+           checkVal(); // here is the checkVal function call that will check that user input value is valid or not
+          
         }
-        let x = document.getElementById("btn" + i.toString()).value;
-        document.getElementById(select_box.id).value = parseInt(x);
-        // here is the checkVal function call that will check that user input value is valid or not
-        checkVal();
+       
+       
       
     });
 }
@@ -177,15 +176,17 @@ function checkVal() {
   let bol = isValid(board, row, col, num); // by the help of this isValid function it will check
 
   if (bol == false) {
+    select_box.classList.remove("select");
     select_box.classList.add("wrong");
     lastSelect = select_box;
     makeInput = false;
   } else {
     numToRemove--;
     makeInput = true;
+    findExistedValue && findExistedValue.classList.remove("wrong");
+    findExistedValue = null;
     select_box.classList.remove("wrong");
     select_box.classList.add("select");
-    lastSelect&&lastSelect.remove("wrong");
     lastSelect = null;
     board[row][col] = num;
     select_box.value = num;
@@ -203,15 +204,18 @@ function checkVal() {
 
 // this is a helper function that will help user to check that inputed value is valid or not
 function isValid(board, row, col, num) {
+  board[row][col] = 0;
   for (let i = 0; i < 9; i++) {
     if (board[row][i] == num) {
       let val = row * 9 + i + 1;
+      findExistedValue && findExistedValue.classList.remove("wrong");
       findExistedValue = document.getElementById(val.toString());
       findExistedValue.classList.add("wrong");
       return false;
     }
     if (board[i][col] == num) {
       let val = i * 9 + col + 1;
+      findExistedValue && findExistedValue.classList.remove("wrong");
       findExistedValue = document.getElementById(val.toString());
       findExistedValue.classList.add("wrong");
       return false;
@@ -224,6 +228,7 @@ function isValid(board, row, col, num) {
     for (let j = startCol; j < startCol + 3; j++) {
       if (board[i][j] == num) {
         let val = i * 9 + j + 1;
+        findExistedValue && findExistedValue.classList.remove("wrong");
         findExistedValue = document.getElementById(val.toString());
         findExistedValue.classList.add("wrong");
         return false;
@@ -236,14 +241,14 @@ function isValid(board, row, col, num) {
 
 // this function will make the sudoku in previous state
 function undo() {
-  if (findExistedValue != null) {
-    document.getElementById(lastSelect).value = null;
-    select_box.classList.remove("wrong");
-    console.log(findExistedValue);
-    findExistedValue.classList.remove("wrong");
-    select_box.value = null;
+    lastSelect = null;
+    select_box&&select_box.classList.remove("wrong");
+    select_box&&select_box.classList.add("select");
+    findExistedValue&&findExistedValue.classList.remove("wrong");
+    if (select_box) {
+      select_box.value = null;
+    }
     makeInput = true;
-  }
 }
 
 // this function will generate new sudoku by simply reload the page
