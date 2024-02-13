@@ -15,6 +15,8 @@ let findExistedValue = null;
 let makeInput = true;
 // this variable decide that how many blank space shoud provide the user
 let numToRemove = 40;
+// this variable will store the previous color of the findExistedValue
+let findExistedValueColor = null;
 
 // this function will create the sudoku box
 // the most complex part is this
@@ -128,6 +130,7 @@ function sudokuGridFilling() {
       if (board[i][j] != 0) {
         particularCell.setAttribute("value", board[i][j]);
         particularCell.setAttribute("readOnly", "true");
+        particularCell.style.backgroundColor = "yellow";
       } else {
         particularCell.addEventListener("click", selectInput);
       }
@@ -184,7 +187,11 @@ function checkVal() {
     numToRemove--;
     makeInput = true;
     findExistedValue && findExistedValue.classList.remove("wrong");
+    if(findExistedValueColor){
+      findExistedValue.style.backgroundColor = findExistedValueColor;
+    }
     findExistedValue = null;
+    findExistedValueColor=null;
     select_box.classList.remove("wrong");
     select_box.classList.add("select");
     lastSelect = null;
@@ -210,6 +217,8 @@ function isValid(board, row, col, num) {
       let val = row * 9 + i + 1;
       findExistedValue && findExistedValue.classList.remove("wrong");
       findExistedValue = document.getElementById(val.toString());
+      findExistedValueColor = findExistedValue.style.backgroundColor;
+      findExistedValue.style.setProperty("background-color","");
       findExistedValue.classList.add("wrong");
       return false;
     }
@@ -217,6 +226,8 @@ function isValid(board, row, col, num) {
       let val = i * 9 + col + 1;
       findExistedValue && findExistedValue.classList.remove("wrong");
       findExistedValue = document.getElementById(val.toString());
+      findExistedValueColor = findExistedValue.style.backgroundColor;
+      findExistedValue.style.setProperty("background-color", "");
       findExistedValue.classList.add("wrong");
       return false;
     }
@@ -230,6 +241,8 @@ function isValid(board, row, col, num) {
         let val = i * 9 + j + 1;
         findExistedValue && findExistedValue.classList.remove("wrong");
         findExistedValue = document.getElementById(val.toString());
+        findExistedValueColor = findExistedValue.style.backgroundColor;
+        findExistedValue.style.setProperty("background-color", "");
         findExistedValue.classList.add("wrong");
         return false;
       }
@@ -245,6 +258,7 @@ function undo() {
     select_box&&select_box.classList.remove("wrong");
     select_box&&select_box.classList.add("select");
     findExistedValue&&findExistedValue.classList.remove("wrong");
+    findExistedValue.style.backgroundColor = findExistedValueColor;
     if (select_box) {
       select_box.value = null;
     }
